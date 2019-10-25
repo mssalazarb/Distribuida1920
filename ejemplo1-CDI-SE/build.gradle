@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'org.jboss.weld.se', name: 'weld-se-core', version: '3.1.2.Final'
+	
+	compile group: 'javax.enterprise', name: 'cdi-api', version: '2.0'
+}
