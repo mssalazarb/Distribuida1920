@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Album</title>
+</head>
+<body>
+	<h3>CRUD utilizando Servlets, CDI y JDBC</h3>
+	<h3>ALBUM</h3>
+	<div>
+		<a id="albumCrear" href="./crear.html">
+			<button>Crear Album</button>
+		</a>
+		<br/>
+		<br/>
+		<form action="../albumCdi" method = "get">
+			<input type="submit" value="Listar Todos">
+		</form>
+		<br/>
+		<form action="../albumCdi" method = "get">
+			<div>
+				Id: <input type="number" name="id"/>
+				<input type="submit" value="Editar Album">
+			</div>
+		</form>
+		<br/>
+		<form action="../albumCdi" method = "post">
+			<div>
+				Id: <input type="number" name="id"/>
+				<input type="submit" value="Eliminar Album">
+			</div>
+		</form>
+		<br/>
+		<form action="../albumCdi" method = "get">
+			<div>
+				Id: <input type="number" name="id"/>
+				<input type="submit" value="Buscar Album">
+			</div>
+		</form>
+		<br/>
+	</div>
+</body>
+</html>

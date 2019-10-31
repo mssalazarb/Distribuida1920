@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+    id 'war'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+    compile group: 'org.jboss.weld.servlet', name: 'weld-servlet', version: '2.4.8.Final'
+}
