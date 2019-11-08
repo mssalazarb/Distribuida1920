@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client
+	compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '3.0.6.Final'
+	
+	// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson-provider
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: '3.9.0.Final'
+	
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+	
+}

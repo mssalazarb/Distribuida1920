@@ -1,0 +1,24 @@
+plugins {
+    id 'java-library'
+    id 'war'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	//Dependencia para conectarnos con JDBC a PostgreSQL
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	
+	//Dependencia para el Pool de Conexiones
+	compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
+	
+	// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-servlet-initializer
+	compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '4.4.0.Final'
+	
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
+	
+}

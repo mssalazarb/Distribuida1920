@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/SMLSchema-instace"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	id="WebApp_ID">
+	<display-name>trabajo4</display-name>
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>CrearListarSinger</servlet-name>
+		<servlet-class>CrearListarSinger</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CrearListarSinger</servlet-name>
+		<url-pattern>/singer/CrearListarSinger</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EliminarBuscarSinger</servlet-name>
+		<servlet-class>EliminarBuscarSinger</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EliminarBuscarSinger</servlet-name>
+		<url-pattern>/singer/EliminarBuscarSinger</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditarSinger</servlet-name>
+		<servlet-class>EditarSinger</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EditarSinger</servlet-name>
+		<url-pattern>/singer/EditarSinger</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CrearListarAlbum</servlet-name>
+		<servlet-class>CrearListarAlbum</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CrearListarAlbum</servlet-name>
+		<url-pattern>/album/CrearListarAlbum</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EliminarBuscarAlbum</servlet-name>
+		<servlet-class>EliminarBuscarAlbum</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EliminarBuscarAlbum</servlet-name>
+		<url-pattern>/album/EliminarBuscarAlbum</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
