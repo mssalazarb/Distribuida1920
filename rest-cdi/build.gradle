@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'war'
     id 'eclipse-wtp'
+    id "io.freefair.lombok" version "4.1.4"
 }
 
 repositories {
