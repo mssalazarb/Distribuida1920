@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library'
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    //RESTEASY CLIENT
+	compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '3.0.17.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '3.9.0.Final'
+	
+	//JSF
+	compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.20'
+	compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.20'
+	providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+	
+	//CDI
+	compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.2.Final'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+}
+

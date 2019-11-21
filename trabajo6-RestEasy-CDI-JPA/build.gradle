@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library'
+    id 'war'
+    id 'eclipse-wtp'
+    id "io.freefair.lombok" version "4.1.4"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	//Data Base
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.8.Final'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	
+	//REST
+	compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-cdi', version: '3.9.0.Final'
+	
+	//CDI
+	compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.2.Final'
+}
