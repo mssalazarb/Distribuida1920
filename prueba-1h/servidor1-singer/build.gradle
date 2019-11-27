@@ -1,0 +1,24 @@
+plugins {
+    id 'java-library'
+    id 'war'
+    id "io.freefair.lombok" version "4.1.4"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	//CDI
+	compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.2.Final'
+	
+    //DB
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.7.0'
+	
+	//JAX-RS
+    compile group: 'org.jboss.resteasy', name: 'resteasy-jaxrs', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jaxb-provider', version: '3.9.0.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-cdi', version: '3.9.0.Final'
+}
