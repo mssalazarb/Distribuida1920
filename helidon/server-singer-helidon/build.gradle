@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	//Tienes todas las dependencias
+	compile group: 'io.helidon', name: 'helidon-bom', version: '1.4.0', ext: 'pom'
+	
+	//Implementacion de Microprofile
+	compile group: 'io.helidon.microprofile.bundles', name: 'helidon-microprofile', version: '1.4.0'
+	
+	//JPA
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.8.Final'
+	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+	
+	
+}
+
+task copyLibs(type:Copy){
+	from configurations.runtime
+	into 'build/libs/libs'
+}
