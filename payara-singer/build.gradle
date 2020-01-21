@@ -1,0 +1,27 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.org.mikeneck:payara-plugin:0.0.2"
+  }
+}
+
+apply plugin: "org.mikeneck.payara-plugin"
+
+plugins {
+
+  id 'fish.payara.micro-gradle-plugin' version '1.0.2'
+  
+}
+
+payaraMicro {
+    payaraVersion = '5.193'
+    deployWar = false
+    useUberJar = true
+    daemon = false
+    commandLineOptions = [port: 2468]
+    javaCommandLineOptions = [Dtest: 'test123', ea:true]
+}
