@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id "it.gianluz.capsule" version "1.0.3"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'io.helidon.microprofile.bundles', name: 'helidon-microprofile-core', version: '1.4.0'
+	compile group: 'io.helidon', name: 'helidon-bom', version: '1.4.0', ext: 'pom'
+	compile group: 'com.ecwid.consul', name: 'consul-api', version:'1.4.4'
+	compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.9'
+	
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.8'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.8.Final'
+	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+}
+
+task copyLibs(type: Copy){
+	from configurations.runtime
+	into 'build/libs/libs'
+}
+
+task ejecutable(type:FatCapsule){
+	group = 'build'
+	applicationClass 'io.helidon.microprofile.server.Main'
+}
+

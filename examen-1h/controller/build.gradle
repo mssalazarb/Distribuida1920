@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	//JAX-RS JERSEY
+	compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.29.1'
+	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+	compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.29.1'
+	compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.29.1'
+	
+	//HTTPCLIENT
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+}

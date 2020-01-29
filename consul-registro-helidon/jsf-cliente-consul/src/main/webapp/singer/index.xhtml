@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+<h:head>
+    <title>SINGER</title>
+</h:head>
+<h:body>
+	<h2>Bienvenido a la Administracion de Singer</h2>
+	<h:panelGroup rendered="#{singerController.banderaListar}">
+		<h:panelGrid columns="2" border = "1"
+	            cellpadding = "10" cellspacing = "1">
+	            <h:button value="Regresar Inicio" outcome="/index.xhtml" />
+	            <h:form>
+	            	<h:commandButton value="Crear Singer" actionListener="#{singerController.banderaCrear()}"/>
+	            </h:form>
+		</h:panelGrid>
+		<h:form>
+			<h:dataTable value="#{singerController.singers}" var="singer" border="1" cellpadding = "10" cellspacing = "1">
+				<h:column>
+					<f:facet name="header">Singer Id</f:facet>
+					<h:outputLabel value="#{singer.id}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					<h:outputLabel value="#{singer.firstName}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+					<h:outputLabel value="#{singer.lastName}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Cumpleaños</f:facet>
+					<h:outputLabel value="#{singer.birthDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton value="Editar" actionListener="#{singerController.banderaEditar(singer)}"/>
+					<h:outputText value=" "/>
+					<h:commandButton value="Eliminar" actionListener="#{singerController.eliminarSinger(singer)}"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{singerController.banderaCrear or singerController.banderaEditar}">
+		<h:form>
+			<h:panelGrid columns="2" border = "1" cellpadding = "10" cellspacing = "1">
+				<h:outputLabel value="Singer Id: "/>
+				<h:inputText value="#{singerController.singer.id}"/>
+				<h:outputLabel value="First Name: "/>
+				<h:inputText value="#{singerController.singer.firstName}"/>
+				<h:outputLabel value="Last Name: "/>
+				<h:inputText value="#{singerController.singer.lastName}"/>
+				<h:outputLabel value="Birth Date: "/>
+				<h:inputText value="#{singerController.singer.birthDate}">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+				</h:inputText>
+			</h:panelGrid>
+			<h:panelGrid columns="1" border = "1" cellpadding = "10" cellspacing = "1">
+				<h:form>
+	            	<h:commandButton value="Cancelar" actionListener="#{singerController.listarSingers()}"/>
+	            	<h:outputText value=" "/>
+	            	<h:commandButton value="Crear Singer" actionListener="#{singerController.guardarSinger()}" rendered="#{singerController.banderaCrear}"/>
+	            	<h:commandButton value="Editar Singer" actionListener="#{singerController.actualizarSinger()}" rendered="#{singerController.banderaEditar}"/>
+	            </h:form>
+			</h:panelGrid>
+		</h:form>
+	</h:panelGroup>
+</h:body>
+</html>

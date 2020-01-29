@@ -1,0 +1,117 @@
+######CREAR EL ROLE distribuida######
+
+CREATE ROLE distribuida WITH
+	LOGIN
+	SUPERUSER
+	CREATEDB
+	CREATEROLE
+	INHERIT
+	REPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD 'xxxxxx';
+
+GRANT postgres TO distribuida;
+
+######CREAR BASE DE DATOS##########
+
+CREATE DATABASE examen01
+    WITH 
+    OWNER = distribuida
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+######CREACION DE TABLAS##########
+
+CREATE TABLE public.singer
+(
+    id integer NOT NULL,
+    first_name character varying(50),
+    last_name character varying(40),
+    birth_date date,
+    version integer,
+    CONSTRAINT pk_id PRIMARY KEY (id)
+);
+
+ALTER TABLE public.singer
+    OWNER to distribuida;
+
+
+CREATE TABLE public.album
+(
+    id integer NOT NULL,
+    singer_id integer NOT NULL,
+    title character varying(100),
+    release_date date,
+    version integer,
+    CONSTRAINT pk_id_album PRIMARY KEY (id),
+    CONSTRAINT fk_singer FOREIGN KEY (singer_id)
+        REFERENCES public.singer (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+ALTER TABLE public.album
+    OWNER to distribuida;
+
+
+CREATE TABLE public.instrument
+(
+    instrument_id character varying(20) NOT NULL,
+    CONSTRAINT pk_id_instrument PRIMARY KEY (instrument_id)
+);
+
+ALTER TABLE public.instrument
+    OWNER to distribuida;
+
+CREATE TABLE public.singer_instrument
+(
+    singer_id integer NOT NULL,
+    instrument_id character varying(20) NOT NULL,
+    CONSTRAINT fk_singer_id FOREIGN KEY (singer_id)
+        REFERENCES public.singer (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_instrument_id FOREIGN KEY (instrument_id)
+        REFERENCES public.instrument (instrument_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+ALTER TABLE public.singer_instrument
+    OWNER to distribuida;
+
+
+#######INSERT SINGER###############
+INSERT INTO public.singer(
+	id, first_name, last_name, birth_date, version)
+	VALUES (1, 'Pedro', 'Infante', '1989-02-04', 1);
+
+INSERT INTO public.singer(
+	id, first_name, last_name, birth_date, version)
+	VALUES (2, 'Metallica', 'Metallica', '1992-05-04', 1);
+
+#######INSERT ALBUM###############
+INSERT INTO public.album(
+	id, singer_id, title, release_date, version)
+	VALUES (1, 1, 'Ranchera', '1993-08-03', 1);
+
+INSERT INTO public.album(
+	id, singer_id, title, release_date, version)
+	VALUES (2, 2, 'Master of Pupets', '1995-02-15', 1);
+
+########INSERT INSTRUMENT#############
+INSERT INTO public.instrument(
+	instrument_id)
+	VALUES ('Guitarra');
+INSERT INTO public.instrument(
+	instrument_id)
+	VALUES ('Guitarra Electrica');
+
+#######INSERT SINGER_INSTRUMENT###########
+INSERT INTO public.singer_instrument(
+	singer_id, instrument_id)
+	VALUES (1, 'Guitarra');
+
+INSERT INTO public.singer_instrument(
+	singer_id, instrument_id)
+	VALUES (2, 'Guitarra Electrica');

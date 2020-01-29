@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+<h:head>
+    <title>ALBUM</title>
+</h:head>
+<h:body>
+	<h2>Bienvenido a la Administracion de Album</h2>
+	<h:panelGroup rendered="#{albumController.banderaListar}">
+		<h:panelGrid columns="2" border = "1"
+	            cellpadding = "10" cellspacing = "1">
+	            <h:button value="Regresar Inicio" outcome="/index.xhtml" />
+	            <h:form>
+	            	<h:commandButton value="Crear Album" actionListener="#{albumController.banderaCrear()}"/>
+	            </h:form>
+		</h:panelGrid>
+		<h:form>
+			<h:dataTable value="#{albumController.albums}" var="album" border="1" cellpadding = "10" cellspacing = "1">
+				<h:column>
+					<f:facet name="header">Album Id</f:facet>
+					<h:outputLabel value="#{album.id}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Singer</f:facet>
+					<h:outputLabel value="#{album.singerId.firstName} #{album.singerId.lastName}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Titulo</f:facet>
+					<h:outputLabel value="#{album.title}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Lanzamiento</f:facet>
+					<h:outputLabel value="#{album.releaseDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</h:outputLabel>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton value="Editar" actionListener="#{albumController.banderaEditar(album)}"/>
+					<h:outputText value=" "/>
+					<h:commandButton value="Eliminar" actionListener="#{albumController.eliminarAlbum(album)}"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{albumController.banderaCrear or albumController.banderaEditar}">
+		<h:form>
+			<h:panelGrid columns="2" border = "1" cellpadding = "10" cellspacing = "1">
+				<h:outputLabel value="Album Id: "/>
+				<h:inputText value="#{albumController.album.id}"/>
+				<h:outputLabel value="Singer: "/>
+				<h:selectOneMenu value="#{albumController.singer.id}" >
+					<f:selectItem itemLabel="Seleccione un Singer" itemValue="" />  
+					<f:selectItems value="#{albumController.singers}" var="singer" itemLabel="#{singer.firstName} #{singer.lastName}" itemValue="#{singer.id}"/>
+				</h:selectOneMenu>
+				<h:outputLabel value="Title: "/>
+				<h:inputText value="#{albumController.album.title}"/>
+				<h:outputLabel value="Release Date: "/>
+				<h:inputText value="#{albumController.album.releaseDate}">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+				</h:inputText>
+			</h:panelGrid>
+			<h:panelGrid columns="1" border = "1" cellpadding = "10" cellspacing = "1">
+				<h:form>
+	            	<h:commandButton value="Cancelar" actionListener="#{albumController.listarAlbums()}"/>
+	            	<h:outputText value=" "/>
+	            	<h:commandButton value="Crear Album" actionListener="#{albumController.guardarAlbum()}" rendered="#{albumController.banderaCrear}"/>
+	            	<h:commandButton value="Editar Album" actionListener="#{albumController.actualizarAlbum()}" rendered="#{albumController.banderaEditar}"/>
+	            </h:form>
+			</h:panelGrid>
+		</h:form>
+	</h:panelGroup>
+</h:body>
+</html>
